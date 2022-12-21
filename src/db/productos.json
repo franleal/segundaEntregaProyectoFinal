@@ -1,0 +1,79 @@
+[
+  {
+    "id": 1,
+    "timestamp": 1669247157283,
+    "title": "Papa",
+    "descripcion": "verdura",
+    "codigo": 45612,
+    "thumbnail": "https://i.ibb.co/LzSXhvs/5ff3e6a0b703f-potatoes-food-supermarket-agriculture-JG7-QGNY.jpg",
+    "price": 200,
+    "stock": 20
+  },
+  {
+    "id": 2,
+    "timestamp": 1669247247165,
+    "title": "tomate",
+    "descripcion": "verdura",
+    "codigo": 463112,
+    "thumbnail": "https://i.ibb.co/W3fLgxV/tomato-facts.jpg",
+    "price": 250,
+    "stock": 30
+  },
+  {
+    "id": 3,
+    "timestamp": 1669247314246,
+    "title": "lechuga",
+    "descripcion": "verdura",
+    "codigo": 32112,
+    "thumbnail": "https://i.ibb.co/j6Z60Lw/romaine-large.jpg",
+    "price": 150,
+    "stock": 30
+  },
+  {
+    "id": 4,
+    "timestamp": 1669247398074,
+    "title": "pan",
+    "descripcion": "panaderia",
+    "codigo": 33542,
+    "thumbnail": "https://i.ibb.co/PMjJfCN/maxresdefault.jpg",
+    "price": 300,
+    "stock": 30
+  },
+  {
+    "id": 5,
+    "timestamp": 1669247461833,
+    "title": "banana",
+    "descripcion": "fruta",
+    "codigo": 2542,
+    "thumbnail": "https://i.ibb.co/4Pwx7wD/Cavendish-Banana-DS.jpg",
+    "price": 250,
+    "stock": 30
+  },
+  {
+    "id": 6,
+    "title": "Papa",
+    "descripcion": "verdura",
+    "codigo": 45612,
+    "thumbnail": "https://i.ibb.co/LzSXhvs/5ff3e6a0b703f-potatoes-food-supermarket-agriculture-JG7-QGNY.jpg",
+    "price": 200,
+    "stock": 20
+  },
+  {
+    "id": 7,
+    "title": "Papa",
+    "descripcion": "verdura",
+    "codigo": 45612,
+    "thumbnail": "https://i.ibb.co/LzSXhvs/5ff3e6a0b703f-potatoes-food-supermarket-agriculture-JG7-QGNY.jpg",
+    "price": 200,
+    "stock": 20
+  },
+  {
+    "id": 8,
+    "title": "Papa",
+    "descripcion": "verdura",
+    "codigo": 45612,
+    "thumbnail": "https://i.ibb.co/LzSXhvs/5ff3e6a0b703f-potatoes-food-supermarket-agriculture-JG7-QGNY.jpg",
+    "price": 200,
+    "stock": 20
+  }
+]
