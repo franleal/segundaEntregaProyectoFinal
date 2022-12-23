@@ -1,27 +1,37 @@
 //Modules - Class
+require('dotenv').config()
+
+
 const Carrito = require('./daos/carritos/carritoDaoFs')
+const carritoMongoose = require(process.env.MONGODB_CART)
+const carritoFirebaseContainer = require(process.env.FIREBASE_CART)
 const Contenedor = require('./daos/productos/productosDaoFs')
-const contenedorMongo = require("./container/mongodb")
-const config = require("./config/config")
+const contenedorMongo = require(process.env.MONGODB)
+const contenedorFirebase = require(process.env.FIREBASE) 
+
+
 
 const express = require('express')
 const { Router } = express
 const app = express()
 
-//Set Class (Desahabilitar p/Firebase-MongoDb)
+
 const productos = new Contenedor()
 const carrito = new Carrito()
-const productosMongo = new contenedorMongo("products", {
-    title: {type: String, require: true, max: 100},
-    price: {type: Number, require: true},
-    thumbnail: {type: String, require: true, max: 100}
-})
+const carritoMongo = new carritoMongoose()
+const carritoFirebase = new carritoFirebaseContainer()
+const productosMongo = new contenedorMongo()
+const productosFirebase = new contenedorFirebase()
 
-config.initMongoDB()
+
+
+
 
 //Routes
 const productosRuta = Router()
 const carritoRuta = Router()
+
+
 
 //Admin
 const admin = true
@@ -35,26 +45,32 @@ const PORT = 8080
 
 //Endpoints de productos
 productosRuta.get('/', (req, res) => {
+    productosFirebase.getAll()
+    productosMongo.getAll()
     productos.getAll().then(response => {
         res.send(response)
     })
 })
 
-productosRuta.post('/', (req, res) => {
+productosRuta.post('/', async (req, res) => {
     const producto = req.body;
-    productosMongo.save(producto)
-    productos.save(producto)
+    await productosFirebase.save(producto)
+    await productosMongo.save(producto)
+    await productos.save(producto)
     res.send({msj: `Product ${producto.title} has been added`})
 })
 
 productosRuta.delete('/:id', (req, res) => {
-    const id = parseInt(req.params.id)
+    const id = (req.params.id)
+    productosMongo.deleteById(id)
     productos.deleteById(id)
     res.send({msj: `Product with ID ${id} was deleted`})
 })
 
-productosRuta.get('/:id', (req, res) => {
-    const id = parseInt(req.params.id)
+productosRuta.get('/:id', async (req, res) => {
+    const id =(req.params.id)
+    productosFirebase.getById(id)
+    productosMongo.getById(id)
     productos.getById(id).then(response => {
         res.send(response)
     })
@@ -77,6 +93,8 @@ productosRuta.put('/:id', async (req, res) => {
 
 //Endpoints de carrito
 carritoRuta.post('/', async (req, res) => {
+    await carritoFirebase.save()
+    await carritoMongo.save()
     res.send(await carrito.save())
 })
 

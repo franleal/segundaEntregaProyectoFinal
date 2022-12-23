@@ -16,6 +16,7 @@ class Firebase{
         const query = db.collection(this.collection)
         const doc = query.doc(id)
         const item = await doc.get()
+        console.log("Producto extraido de Firebase")
         console.log(item.data())
     }
 
@@ -23,6 +24,7 @@ class Firebase{
         const db = admin.firestore()
         const query = db.collection(this.collection)
         const allDocs = await query.get()
+        console.log("Productos extraidos de firebase")
         allDocs.forEach(doc => {
             console.log(
                 {

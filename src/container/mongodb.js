@@ -3,52 +3,39 @@ const mongoose = require('mongoose')
 class MongoDb {
 
     constructor(collection, schema){
-        this.collection = collection
-        this.schema = schema
+        this.collection = mongoose.model(collection,schema)
     }
 
     async save(objeto){
-        const collectionSchema = new mongoose.Schema(this.schema)
-        const collections = mongoose.model(this.collection, collectionSchema)
-        if (this.collection.length == 0){
-            const saveObjModel = new collections(objeto)
-            const save = await saveObjModel.save()
-            console.log(save)
-        }else{
-            console.log('ELSE')
-            const newProduct = new collections(objeto)
-            console.log(newProduct)
-            const save = await newProduct.save()
-            console.log(save)
-        }
+        
+        let doc = await this.collection.create(objeto)
+        console.log(doc)
+        console.log("Producto añadido a la base de datos mongoose")
+        return doc
         
     }
 
+    
     async getById(id){
-        const collectionSchema = new mongoose.Schema(this.schema)
-        const collections = mongoose.model(this.collection, collectionSchema)
-        const elemento = await collections.find().where({_id: id})
+        const elemento = await this.collection.findById(id)
+        console.log('Elemento encontrado')
         console.log(elemento)
     }
 
     async getAll(){
-        const collectionSchema = new mongoose.Schema(this.schema)
-        const collections = mongoose.model(this.collection, collectionSchema)
-        const listaElementos = await collections.find()
+        const listaElementos = await this.collection.find()
+        console.log("Productos listados desde mongo database")
         console.log(listaElementos)
     }
 
     async deleteById(id){
-        const collectionSchema = new mongoose.Schema(this.schema)
-        const collections = mongoose.model(this.collection, collectionSchema)
-        const eliminarElemento = await collections.deleteOne({_id: id})
+        const eliminarElemento = await this.collection.deleteOne({_id: id})
         console.log(eliminarElemento)
     } 
 
     async deleteAll(){
-        const collectionSchema = new mongoose.Schema(this.schema)
-        const collections = mongoose.model(this.collection, collectionSchema)
-        const eliminarElementos = await collections.deleteMany()
+        const eliminarElementos = await this.collection.deleteMany()
+        console.log("Productos eliminados")
         console.log(eliminarElementos)
     }
 

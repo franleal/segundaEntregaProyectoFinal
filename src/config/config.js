@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 const admin = require("firebase-admin");
 const serviceAccount = require("../../backend-project-56d2d-firebase-adminsdk-39qet-5458e5904f.json");
-const { database } = require('firebase-admin');
+
 
 async function initMongoDB() {
     try {
